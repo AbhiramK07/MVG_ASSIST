@@ -1,9 +1,5 @@
 import streamlit as st
-import webbrowser
 from datetime import datetime
-from dotenv import load_dotenv
-
-load_dotenv(override=True)
 
 # Define website URLs for direct navigation
 MENU_OPTIONS = {
@@ -17,26 +13,8 @@ MENU_OPTIONS = {
     "Contact": "https://mvg-innovations.com/contact/"
 }
 
-# Custom CSS for a professional look
-st.markdown("""
-    <style>
-    .stApp {
-        background-color: #f5f7fa;
-        color: #333;
-        font-family: 'Arial', sans-serif;
-    }
-    .main-title {
-        font-size: 36px;
-        font-weight: bold;
-        text-align: center;
-        color: #003366;
-        margin-bottom: 10px;
-    }
-    </style>
-    """, unsafe_allow_html=True)
-
+# Function to get greeting based on time
 def get_greeting():
-    """Returns a dynamic greeting based on the time of day."""
     hour = datetime.now().hour
     if hour < 12:
         return "Good Morning!"
@@ -45,21 +23,19 @@ def get_greeting():
     else:
         return "Good Evening!"
 
+# Streamlit App
 def main():
-    """
-    Streamlit app for instant website navigation.
-    """
-    # Greet the user
-    st.markdown(f"<h1 class='main-title'>{get_greeting()}</h1>", unsafe_allow_html=True)
+    st.markdown(f"<h1 style='text-align: center; color: #003366;'>{get_greeting()}</h1>", unsafe_allow_html=True)
     st.subheader("Welcome to MVGAI! How can I assist you today?")
 
-    # Dropdown menu to select an option
-    user_choice = st.selectbox("What would you like to explore?", list(MENU_OPTIONS.keys()), index=None, placeholder="Select an option...")
+    # Dropdown menu for selection
+    user_choice = st.selectbox("What would you like to explore?", ["Select an option..."] + list(MENU_OPTIONS.keys()))
 
-    # If an option is selected, navigate immediately
-    if user_choice:
-        st.success(f"Redirecting you to **{user_choice}** now... 🚀")
-        webbrowser.open_new_tab(MENU_OPTIONS[user_choice])
+    # Redirect automatically if an option is selected
+    if user_choice != "Select an option...":
+        url = MENU_OPTIONS[user_choice]
+        st.markdown(f'<meta http-equiv="refresh" content="0;url={url}">', unsafe_allow_html=True)
+        st.success(f"Redirecting to {user_choice}... 🚀")
 
 if __name__ == "__main__":
     main()
