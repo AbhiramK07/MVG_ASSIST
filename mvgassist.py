@@ -55,7 +55,6 @@ def main():
 
     # Sidebar with branding
     with st.sidebar:
-        st.image("C://Users//abhir//OneDrive//Desktop//mvg_innovations_logo.jpg", width=200)
         st.markdown("### MVG Innovations 🤖")
         st.markdown("AI-powered chatbot to assist you with queries.")
         st.divider()
