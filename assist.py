@@ -66,6 +66,7 @@ def get_user_details():
                 st.session_state.name = name
                 st.session_state.email = email
                 st.session_state.contact_number = contact_number
+                st.success(f"Hello {name}, Welcome to MVG Innovations! 🎉")
                 st.rerun()
 
     
