@@ -130,7 +130,7 @@ def main():
     if not st.session_state.details_filled:
         get_user_details()
     else:
-        st.sidebar.image("C://Users//abhir//OneDrive//Desktop//mvg_innovations_logo.jpg", caption="MVG Innovations", use_container_width=True)
+        
         st.sidebar.title("Navigation")
         
         menu_options = ["Home", "About", "Services", "Products", "Careers", "Achievements", "Contact", "Learning"]
