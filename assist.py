@@ -51,9 +51,12 @@ def get_user_details():
     
     if not st.session_state.details_filled:
         name = st.text_input("Name:")
+        if name:
+            st.success(f"Hello {name}, welcome to MVG Innovations!")
         email = st.text_input("Email ID:")
         contact_number = st.text_input("Contact Number:")
-        
+
+               
         if st.button("Submit"):
             if not validate_name(name):
                 st.error("Please enter a valid name (only alphabets and spaces).")
@@ -66,7 +69,6 @@ def get_user_details():
                 st.session_state.name = name
                 st.session_state.email = email
                 st.session_state.contact_number = contact_number
-                st.success(f"Hello {name}, Welcome to MVG Innovations! 🎉")
                 st.rerun()
 
     
